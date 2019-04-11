@@ -5,5 +5,5 @@
 build
 .classpath
 .project
-.bin
+bin/
 .settings/
