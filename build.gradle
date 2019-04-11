@@ -44,3 +44,12 @@ dependencies {
     // Use JUnit test framework
     //testImplementation 'junit:junit:4.12'
 }
+
+
+task(runSimple, dependsOn: 'classes', type: JavaExec) {
+    main = 'com.oci.wade.decompiler.decompiler'
+    classpath = sourceSets.main.runtimeClasspath
+    args ''
+}
+
+defaultTasks 'runSimple'
