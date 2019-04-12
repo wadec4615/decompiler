@@ -20,10 +20,10 @@ public class BinaryTree {
 	    this.right = null;
 	}
     }
-    private static StackNode top;
+    private static StackNode root;
 
     public BinaryTree() {
-	top = null;
+	root = null;
     }
 
     public void buildTree(String eqn) {
@@ -33,7 +33,7 @@ public class BinaryTree {
     }
 
     public void clear() {
-	top = null;
+	root = null;
     }
 
     public double evaluate() {
@@ -106,15 +106,15 @@ public class BinaryTree {
     }
 
     private TreeNode peek() {
-	return top.treeNode;
+	return root.treeNode;
     }
 
     private TreeNode pop() {
-	if (top == null) {
+	if (root == null) {
 	    throw new RuntimeException("Underflow");
 	} else {
-	    TreeNode ptr = top.treeNode;
-	    top = top.next;
+	    TreeNode ptr = root.treeNode;
+	    root = root.next;
 	    return ptr;
 	}
     }
@@ -144,12 +144,12 @@ public class BinaryTree {
     }
 
     private void push(TreeNode ptr) {
-	if (top == null) {
-	    top = new StackNode(ptr);
+	if (root == null) {
+	    root = new StackNode(ptr);
 	} else {
 	    StackNode nptr = new StackNode(ptr);
-	    nptr.next = top;
-	    top = nptr;
+	    nptr.next = root;
+	    root = nptr;
 	}
     }
 
