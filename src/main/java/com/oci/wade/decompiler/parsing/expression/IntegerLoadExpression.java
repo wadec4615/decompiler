@@ -15,7 +15,7 @@ public class IntegerLoadExpression extends Expression {
 
     @Override
     public String getStatement(BinaryTree tree) {
-	// stack.push(this);
+	tree.insert(this);
 	return null;
     }
 }

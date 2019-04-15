@@ -7,24 +7,72 @@ public class BinaryTree {
 	Plus, Minus, times, divide;
     }
     public class StackNode {
-	TreeNode treeNode;
-	StackNode next;
+	private TreeNode treeNode;
+	private StackNode next;
 
 	public StackNode(TreeNode treeNode) {
 	    this.treeNode = treeNode;
 	    next = null;
 	}
+
+	public StackNode getNext() {
+	    return next;
+	}
+
+	public TreeNode getTreeNode() {
+	    return treeNode;
+	}
+
+	public void setNext(StackNode next) {
+	    this.next = next;
+	}
+
+	public void setTreeNode(TreeNode treeNode) {
+	    this.treeNode = treeNode;
+	}
     }
     public class TreeNode {
-	Expression data;
-	Operator operator;
-	TreeNode left, right;
+	private Expression data;
+	private Operator operator;
+	private TreeNode left, right;
 
 	public TreeNode(Expression data, Operator op) {
 	    this.data = data;
 	    this.operator = op;
 	    this.left = null;
 	    this.right = null;
+	}
+
+	public Expression getData() {
+	    return data;
+	}
+
+	public TreeNode getLeft() {
+	    return left;
+	}
+
+	public Operator getOperator() {
+	    return operator;
+	}
+
+	public TreeNode getRight() {
+	    return right;
+	}
+
+	public void setData(Expression data) {
+	    this.data = data;
+	}
+
+	public void setLeft(TreeNode left) {
+	    this.left = left;
+	}
+
+	public void setOperator(Operator operator) {
+	    this.operator = operator;
+	}
+
+	public void setRight(TreeNode right) {
+	    this.right = right;
 	}
     }
     private StackNode top;
@@ -37,7 +85,7 @@ public class BinaryTree {
 	top = null;
     }
 
-    private void insert(Expression val) {
+    public void insert(Expression val) {
 	try {
 	    TreeNode nptr = new TreeNode(val, null);
 	    push(nptr);
@@ -46,7 +94,7 @@ public class BinaryTree {
 	}
     }
 
-    private void insert(Operator op) {
+    public void insert(Operator op) {
 	try {
 	    TreeNode nptr = new TreeNode(null, op);
 	    nptr.left = pop();
@@ -57,11 +105,11 @@ public class BinaryTree {
 	}
     }
 
-    private TreeNode peek() {
+    public TreeNode peek() {
 	return top.treeNode;
     }
 
-    private TreeNode pop() {
+    public TreeNode pop() {
 	if (top == null) {
 	    throw new RuntimeException("Underflow");
 	} else {
@@ -87,7 +135,7 @@ public class BinaryTree {
 	preOrder(peek());
     }
 
-    private void preOrder(TreeNode ptr) {
+    public void preOrder(TreeNode ptr) {
 	if (ptr != null) {
 	    System.out.print(ptr.data);
 	    preOrder(ptr.left);
@@ -95,7 +143,7 @@ public class BinaryTree {
 	}
     }
 
-    private void push(TreeNode ptr) {
+    public void push(TreeNode ptr) {
 	if (top == null) {
 	    top = new StackNode(ptr);
 	} else {

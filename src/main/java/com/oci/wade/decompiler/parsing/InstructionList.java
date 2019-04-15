@@ -100,6 +100,8 @@ public class InstructionList {
 		    ICONST iconst = (ICONST) instruction;
 		    list.add(new IntegerLoadExpression(iconst.getValue().intValue()));
 		    break;
+		case RETURN:
+		    break;
 		case IRETURN:
 		    list.add(new IntegerReturnExpression());
 		    break;

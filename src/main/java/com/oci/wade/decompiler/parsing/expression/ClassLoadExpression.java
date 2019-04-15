@@ -34,7 +34,7 @@ public class ClassLoadExpression extends Expression {
 
     @Override
     public String getStatement(BinaryTree tree) {
-	// stack.push(new ClassExpression(name, signature, caller));
+	tree.insert(new ClassExpression(name, signature, caller));
 	return null;
     }
 }

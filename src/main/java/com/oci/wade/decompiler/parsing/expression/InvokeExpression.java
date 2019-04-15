@@ -14,13 +14,13 @@ public class InvokeExpression extends Expression {
 
     @Override
     public String getStatement(BinaryTree tree) {
-//	ClassExpression clazz = (ClassExpression) stack.pop();
-//	int position = signature.lastIndexOf(":");
-//	String methodSignature = signature.substring(0, position);
-//	String format = signature.substring(position + 1);
-//	if (methodSignature.contains("<init>") && methodSignature.contains(clazz.getClazz().getSuperclassName())) {
-//	    return "super();";
-//	}
+	ClassExpression clazz = (ClassExpression) tree.pop().getData();
+	int position = signature.lastIndexOf(":");
+	String methodSignature = signature.substring(0, position);
+	String format = signature.substring(position + 1);
+	if (methodSignature.contains("<init>") && methodSignature.contains(clazz.getClazz().getSuperclassName())) {
+	    return "super();";
+	}
 	return null;
     }
 }
