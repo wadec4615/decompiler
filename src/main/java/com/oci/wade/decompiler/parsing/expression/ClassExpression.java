@@ -1,7 +1,7 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
 import com.oci.wade.decompiler.classfile.JavaClass;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public class ClassExpression extends Expression {
     private JavaClass clazz;
@@ -27,7 +27,7 @@ public class ClassExpression extends Expression {
     }
 
     @Override
-    public String getStatement(Stack<Expression> stack) {
+    public String getStatement(BinaryTree tree) {
 	return null;
     }
 }

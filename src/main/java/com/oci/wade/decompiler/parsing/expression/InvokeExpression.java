@@ -1,7 +1,7 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
 import com.oci.wade.decompiler.classfile.JavaClass;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public class InvokeExpression extends Expression {
     private final String signature;
@@ -13,14 +13,14 @@ public class InvokeExpression extends Expression {
     }
 
     @Override
-    public String getStatement(Stack<Expression> stack) {
-	ClassExpression clazz = (ClassExpression) stack.pop();
-	int position = signature.lastIndexOf(":");
-	String methodSignature = signature.substring(0, position);
-	String format = signature.substring(position + 1);
-	if (methodSignature.contains("<init>") && methodSignature.contains(clazz.getClazz().getSuperclassName())) {
-	    return "super();";
-	}
+    public String getStatement(BinaryTree tree) {
+//	ClassExpression clazz = (ClassExpression) stack.pop();
+//	int position = signature.lastIndexOf(":");
+//	String methodSignature = signature.substring(0, position);
+//	String format = signature.substring(position + 1);
+//	if (methodSignature.contains("<init>") && methodSignature.contains(clazz.getClazz().getSuperclassName())) {
+//	    return "super();";
+//	}
 	return null;
     }
 }

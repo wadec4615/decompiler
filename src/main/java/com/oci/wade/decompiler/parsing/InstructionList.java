@@ -2,7 +2,6 @@ package com.oci.wade.decompiler.parsing;
 
 import java.io.PrintStream;
 import java.util.LinkedList;
-import java.util.Stack;
 import com.oci.wade.decompiler.attribute.LocalVariableTable;
 import com.oci.wade.decompiler.classfile.ConstantPool;
 import com.oci.wade.decompiler.classfile.JavaClass;
@@ -22,6 +21,7 @@ import com.oci.wade.decompiler.parsing.expression.InvokeExpression;
 import com.oci.wade.decompiler.parsing.expression.LongAddExpression;
 import com.oci.wade.decompiler.parsing.expression.LongLoadExpression;
 import com.oci.wade.decompiler.parsing.expression.LongReturnExpression;
+import com.oci.wade.decompiler.util.BinaryTree;
 import com.oci.wade.decompiler.util.RepositoryImpl;
 import com.oci.wade.decompiler.util.Utility;
 
@@ -125,9 +125,9 @@ public class InstructionList {
     }
 
     public void decompile(PrintStream out, String indent) {
-	Stack<Expression> stack = new Stack<>();
+	BinaryTree tree = new BinaryTree();
 	for (Expression expression : list) {
-	    String result = expression.getStatement(stack);
+	    String result = expression.getStatement(tree);
 	    if (result != null) {
 		out.println(indent + " " + result);
 	    }

@@ -1,14 +1,14 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public class IntegerReturnExpression extends Expression {
     @Override
-    public String getStatement(Stack<Expression> stack) {
-	Expression expression = stack.pop();
-	if (expression instanceof IntegerLoadExpression) {
-	    return "return " + ((IntegerLoadExpression) expression).getLiteral() + ";";
-	}
+    public String getStatement(BinaryTree tree) {
+//	Expression expression = stack.pop();
+//	if (expression instanceof IntegerLoadExpression) {
+//	    return "return " + ((IntegerLoadExpression) expression).getLiteral() + ";";
+//	}
 	return null;
     }
 }

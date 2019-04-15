@@ -1,7 +1,7 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public abstract class Expression {
-    public abstract String getStatement(Stack<Expression> stack);
+    public abstract String getStatement(BinaryTree tree);
 }

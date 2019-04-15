@@ -1,6 +1,6 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public class IntegerLoadExpression extends Expression {
     private final int literal;
@@ -14,8 +14,8 @@ public class IntegerLoadExpression extends Expression {
     }
 
     @Override
-    public String getStatement(Stack<Expression> stack) {
-	stack.push(this);
+    public String getStatement(BinaryTree tree) {
+	// stack.push(this);
 	return null;
     }
 }

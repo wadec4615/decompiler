@@ -1,6 +1,6 @@
 package com.oci.wade.decompiler.parsing.expression;
 
-import java.util.Stack;
+import com.oci.wade.decompiler.util.BinaryTree;
 
 public class LongLoadExpression extends Expression {
     private final long value;
@@ -10,7 +10,7 @@ public class LongLoadExpression extends Expression {
     }
 
     @Override
-    public String getStatement(Stack<Expression> stack) {
+    public String getStatement(BinaryTree tree) {
 	return null;
     }
 

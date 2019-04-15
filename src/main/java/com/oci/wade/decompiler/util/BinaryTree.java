@@ -1,7 +1,12 @@
 package com.oci.wade.decompiler.util;
 
+import com.oci.wade.decompiler.parsing.expression.Expression;
+
 public class BinaryTree {
-    class StackNode {
+    public enum Operator {
+	Plus, Minus, times, divide;
+    }
+    public class StackNode {
 	TreeNode treeNode;
 	StackNode next;
 
@@ -10,111 +15,58 @@ public class BinaryTree {
 	    next = null;
 	}
     }
-    class TreeNode {
-	char data;
+    public class TreeNode {
+	Expression data;
+	Operator operator;
 	TreeNode left, right;
 
-	public TreeNode(char data) {
+	public TreeNode(Expression data, Operator op) {
 	    this.data = data;
+	    this.operator = op;
 	    this.left = null;
 	    this.right = null;
 	}
     }
-    private static StackNode root;
+    private StackNode top;
 
     public BinaryTree() {
-	root = null;
-    }
-
-    public void buildTree(String eqn) {
-	for (int i = eqn.length() - 1; i >= 0; i--) {
-	    insert(eqn.charAt(i));
-	}
+	clear();
     }
 
     public void clear() {
-	root = null;
+	top = null;
     }
 
-    public double evaluate() {
-	return evaluate(peek());
-    }
-
-    public double evaluate(TreeNode ptr) {
-	if ((ptr.left == null) && (ptr.right == null)) {
-	    return toDigit(ptr.data);
-	} else {
-	    double result = 0.0;
-	    double left = evaluate(ptr.left);
-	    double right = evaluate(ptr.right);
-	    char operator = ptr.data;
-	    switch (operator) {
-		case '+':
-		    result = left + right;
-		    break;
-		case '-':
-		    result = left - right;
-		    break;
-		case '*':
-		    result = left * right;
-		    break;
-		case '/':
-		    result = left / right;
-		    break;
-		default:
-		    result = left + right;
-		    break;
-	    }
-	    return result;
-	}
-    }
-
-    public void infix() {
-	inOrder(peek());
-    }
-
-    private void inOrder(TreeNode ptr) {
-	if (ptr != null) {
-	    inOrder(ptr.left);
-	    System.out.print(ptr.data);
-	    inOrder(ptr.right);
-	}
-    }
-
-    private void insert(char val) {
+    private void insert(Expression val) {
 	try {
-	    if (isDigit(val)) {
-		TreeNode nptr = new TreeNode(val);
-		push(nptr);
-	    } else if (isOperator(val)) {
-		TreeNode nptr = new TreeNode(val);
-		nptr.left = pop();
-		nptr.right = pop();
-		push(nptr);
-	    }
+	    TreeNode nptr = new TreeNode(val, null);
+	    push(nptr);
 	} catch (Exception e) {
 	    System.out.println("Invalid Expression");
 	}
     }
 
-    private boolean isDigit(char ch) {
-	return (ch >= '0') && (ch <= '9');
-    }
-
-    private boolean isOperator(char ch) {
-	return (ch == '+') || (ch == '-') || (ch == '*') || (ch == '/');
+    private void insert(Operator op) {
+	try {
+	    TreeNode nptr = new TreeNode(null, op);
+	    nptr.left = pop();
+	    nptr.right = pop();
+	    push(nptr);
+	} catch (Exception e) {
+	    System.out.println("Invalid Expression");
+	}
     }
 
     private TreeNode peek() {
-	return root.treeNode;
+	return top.treeNode;
     }
 
     private TreeNode pop() {
-	if (root == null) {
+	if (top == null) {
 	    throw new RuntimeException("Underflow");
 	} else {
-	    TreeNode ptr = root.treeNode;
-	    root = root.next;
+	    TreeNode ptr = top.treeNode;
+	    top = top.next;
 	    return ptr;
 	}
     }
@@ -144,16 +96,12 @@ public class BinaryTree {
     }
 
     private void push(TreeNode ptr) {
-	if (root == null) {
-	    root = new StackNode(ptr);
+	if (top == null) {
+	    top = new StackNode(ptr);
 	} else {
 	    StackNode nptr = new StackNode(ptr);
-	    nptr.next = root;
-	    root = nptr;
+	    nptr.next = top;
+	    top = nptr;
 	}
-    }
-
-    private int toDigit(char ch) {
-	return ch - '0';
     }
 }
