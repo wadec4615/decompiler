@@ -36,11 +36,14 @@ public class BinaryTree {
 	private Operator operator;
 	private TreeNode left, right;
 
-	public TreeNode(Expression data, Operator op) {
+	public TreeNode(Expression data) {
 	    this.data = data;
-	    this.operator = op;
-	    this.left = null;
-	    this.right = null;
+	}
+
+	public TreeNode(TreeNode left, Operator operator, TreeNode right) {
+	    this.operator = operator;
+	    this.left = left;
+	    this.right = right;
 	}
 
 	public Expression getData() {
@@ -87,8 +90,7 @@ public class BinaryTree {
 
     public void insert(Expression val) {
 	try {
-	    TreeNode nptr = new TreeNode(val, null);
-	    push(nptr);
+	    push(new TreeNode(val));
 	} catch (Exception e) {
 	    System.out.println("Invalid Expression");
 	}
@@ -96,10 +98,9 @@ public class BinaryTree {
 
     public void insert(Operator op) {
 	try {
-	    TreeNode nptr = new TreeNode(null, op);
-	    nptr.left = pop();
-	    nptr.right = pop();
-	    push(nptr);
+	    TreeNode left = pop();
+	    TreeNode right = pop();
+	    push(new TreeNode(left, op, right));
 	} catch (Exception e) {
 	    System.out.println("Invalid Expression");
 	}

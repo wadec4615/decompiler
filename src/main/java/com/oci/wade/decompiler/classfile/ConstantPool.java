@@ -21,33 +21,6 @@ import com.oci.wade.decompiler.exception.ClassFormatException;
 import com.oci.wade.decompiler.util.Utility;
 
 public class ConstantPool implements Cloneable {
-    private static String escape(String str) {
-	int len = str.length();
-	StringBuilder buf = new StringBuilder(len + 5);
-	char[] ch = str.toCharArray();
-	for (int i = 0; i < len; i++) {
-	    switch (ch[i]) {
-		case '\n':
-		    buf.append("\\n");
-		    break;
-		case '\r':
-		    buf.append("\\r");
-		    break;
-		case '\t':
-		    buf.append("\\t");
-		    break;
-		case '\b':
-		    buf.append("\\b");
-		    break;
-		case '"':
-		    buf.append("\\\"");
-		    break;
-		default:
-		    buf.append(ch[i]);
-	    }
-	}
-	return buf.toString();
-    }
     private Constant[] constant_pool;
 
     public ConstantPool(Constant[] constant_pool) {
@@ -203,6 +176,34 @@ public class ConstantPool implements Cloneable {
 	StringBuilder buf = new StringBuilder();
 	for (int i = 1; i < constant_pool.length; i++) {
 	    buf.append(i).append(")").append(constant_pool[i]).append("\n");
+	}
+	return buf.toString();
+    }
+
+    private static String escape(String str) {
+	int len = str.length();
+	StringBuilder buf = new StringBuilder(len + 5);
+	char[] ch = str.toCharArray();
+	for (int i = 0; i < len; i++) {
+	    switch (ch[i]) {
+		case '\n':
+		    buf.append("\\n");
+		    break;
+		case '\r':
+		    buf.append("\\r");
+		    break;
+		case '\t':
+		    buf.append("\\t");
+		    break;
+		case '\b':
+		    buf.append("\\b");
+		    break;
+		case '"':
+		    buf.append("\\\"");
+		    break;
+		default:
+		    buf.append(ch[i]);
+	    }
 	}
 	return buf.toString();
     }

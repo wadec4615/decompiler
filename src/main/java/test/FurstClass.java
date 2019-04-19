@@ -9,4 +9,14 @@ public class FurstClass implements Serializable, FurstInterface {
     public int method1(int a) throws Exception {
 	return 0;
     }
+
+    @Override
+    public double method2(double a) throws Exception {
+	return a + 5.2;
+    }
+
+    @Override
+    public float method2(float a) throws Exception {
+	return a + 5.2f;
+    }
 }
